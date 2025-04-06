@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: onyx-app
+    env: docker
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        value: hhttps://evyohnhdpqbnpxgznvgr.supabase.co
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        value: your-anon-keyeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2eW9obmhkcHFibnB4Z3pudmdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5MDE5ODEsImV4cCI6MjA1OTQ3Nzk4MX0.0DGmCsmh5tE97GBEgi9Ea_ha1ucCgKUJFPbveUPjkxc
+      - key: NEXTAUTH_SECRET
+        generateValue: true
+      - key: NEXTAUTH_URL
+        value: https://onyx-app.onrender.com
+      - key: PORT
+        value: 3000
