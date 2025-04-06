@@ -1,8 +1,8 @@
-# Install dependencies only when needed
+# Use a specific node version
 FROM node:18-alpine AS deps
 WORKDIR /app
 
-# Install dependencies
+# Install dependencies only when needed
 COPY package.json package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f pnpm-lock.yaml ]; then \
@@ -22,7 +22,7 @@ COPY . .
 # Build Next.js app
 RUN npm run build
 
-# Production image
+# Final production image
 FROM node:18-alpine AS runner
 WORKDIR /app
 
@@ -34,6 +34,6 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
-# Start Next.js app
+# Expose the port and start the app
 EXPOSE 3000
 CMD ["npm", "start"]
